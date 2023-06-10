@@ -1,0 +1,287 @@
+---
+title: "Gelişmiş ve Gelişmemiş Ülkelerde Kadın Hakimler"
+author: 
+  - Albina Bulatova[^1]
+bibliography: ../bibliography/biblio.bib
+csl: ../csl/apa-tr.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{turkish}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+abstract: 
+    Bu çalışmada, yüksek mahkemelerdeki kadınlar hakkında  ülkeler arası veriler sunulmaktadır. Veri seti, yüksek mahkemeye ilk kadının atandığı yıl ve yüksek mahkemenin cinsiyet yapısı hakkında bilgi içermektedir. Yüksek mahkemeler, birçok örf ve âdet hukuku ülkesinde olduğu gibi tek zirve mahkemelerini ve birçok medeni hukuk ülkesinde olduğu gibi anayasa mahkemelerini ve en yüksek temyiz mahkemelerini içermektedir. İlk kadın hakimin yılına ilişkin bilgiler, 1945'ten 2020'ye kadar olan dönemi kapsamaktadır. Yüksek mahkemelerdeki kadınların sayısı ve yüzdesine ilişkin veriler, hangisi önce gelirse, 1970'te veya mahkemenin kurulduğu tarihte başlamaktadır. Dahil edilen ülkeler 200000 veya daha fazla nüfusa sahiptir. Veriler, yazarlar ve araştırma ekipleri tarafından ikincil kaynaklar ile ülkelerin mahkemeleri ve yargıçlarından alınan bilgilerin bir kombinasyonundan yararlanılarak derlenmiştir.
+  Veri seti, nüfusu 200000 veya daha fazla olan ülkelerdeki ülke yüksek mahkemelerinin bilgilerini içermektedir.
+  İlk kadının atandığı yıl için veri seti, 1946 ile 2020 yılları arasındaki 210 ülke yüksek mahkemesini içermektedir.
+  Yüksek mahkemelerdeki kadınların sayısı ve yüzdesine ilişkin veriler, 1970 ve 2013 yılları arasında dengesiz bir uluslararası zaman serisidir. Veri setinde yüksek mahkemelerdeki kadın sayısı için 5675 gözlem bulunmaktadır ve yüksek mahkemelerdeki kadınların yüzdesine ilişkin 5655 gözlem bulunmaktadır. [@escobar2022reimagining]
+  Bu veri setinde "Gelişmiş ve demokratik ülkelerde kadın hakm sayısı daha fazla mıdır, gelişmiş ülkelerde kadın hakimler daha erken yıllarda mı görüldü, ülkenin gelişmişlik düzeyi ile kadın hakim oranı arasında bir ilişki var mıdır?" sorularına cevaplar bulunmaya çalışılarak gelişmişlik düzeyi ile kadınların belli dönemlerde dışlanmış olduğu meslek gruplarından biri olan hakimlikte görev almaları arasında ilişki kurulmaya çalışılacaktır.
+  Veri analizi yapılırken; yıllara göre kadın hakim sayısının bölgelerdeki değişimine, toplam kadın hakim sayısının fazla olduğu ilk 10 ülkenin listesine ve bu 10 ülkedeki kadın hakimlerin sayısının yıllara göre değişimine bakılarak gelişmişlik düzeyi ile ilgili yorumlar yapılacaktır.
+
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== NOTLAR ================================= -->
+<!-- ======================================================================= -->
+[^1]: 22912152, [Github Repo](https://github.com/albi0103/final.git)
+
+
+
+
+
+
+# Giriş
+
+“Kadınları geride bırakan toplum, geride kalmaya mahkûmdur.” Mustafa Kemal Atatürk
+
+
+XXI yüzyıla gelindiği halde çoğu ülkede halen kadın haklarının tam olarak sağlanamadığı görülmektedir. Yakın tarihe kadar kadınlar, birçok önemli meslek grubundan (mühendislik, hukuk, politika vb.) dışlanmış olup temizlik, çocuk bakıcılığı gibi hizmet sektöründe çalışmak zorunda bırakılmıştır.
+
+
+Sadece meslek grubu dışında bırakılmakla da kalmayıp aynı işi yapan erkek çalışanlara nazaran daha az hak sahibi oldukları göze çarpmaktadır. Örneğin, Amerika ve Rusya Federasyonu gibi gelişmiş, güçlü ülkelerde aynı kurumda, aynı pozisyonda çalışan kadın ve erkek çalışanların eşit haklara sahip olmadığı durumlarla karşılaştığı bilinmektedir. Gelişmiş ülkelerde bile böyle olaylar görülürken, gelişmemiş ülkelerde durumun daha da vahim olması aşikârdır.
+
+
+Kadınların önceki tarihlerde dışlandığı meslek gruplarında, kadınların varlıklarının görüldüğü tarihlere dikkat edildiği zaman ülkenin gelişmişlik düzeyi hakkında ipuçlarına ulaşılabilmektedir. Çünkü ancak gelişmiş ve demokratik ülkelerde kadın haklarında daha belirgin iyileşmeler görülmektedir.
+
+
+Günümüzde gelişmiş, demokratik ve güçlü ülkelere bakıldığında kadınların önde gelen meslek gruplarındaki oranı yadsınamaz seviyededir. Gelişmekte olan ve gelişmemiş ülkelerin kadınların çalışma hayatına dâhil edilmesindeki ilerlemeleri, ülkelerin gelişmişlik seviyesinde de
+pozitif artışı sağlamaktadır.[@ludewig2013professional]
+
+
+
+## Çalışmanın Amacı
+Bu çalışmada, “ülkenin gelişmişlik düzeyi ve kadın hâkim sayısı doğru orantılı mı?” sorusunun cevabı gelişmemiş veya gelişmekte olan ülkelerdeki sayılarla kıyaslanarak aranacaktır. Yıllar ilerledikçe ülkelerdeki kadın hâkim sayısı incelenerek sürdürülebilirliği değerlendirilecektir.
+
+
+Dünya çapında gelişmiş ve gelişmemiş ülke mahkemelerindeki kadın hâkimlerin ilk ne zaman çalışmaya başladığı ve hâkimler arasındaki kadınların oranı incelenerek istatistiksel analiz yapılacaktır.
+
+## Literatür 
+
+Gelişmemiş ülkelerde özellikle bazı meslek gruplarına kadınların katılımı yasaklanmıştır. Bu husus özellikle hukuk alanında göze çarpmaktadır. Kadınların karar alma organlarından dışlanması, demokrasi ilkelerinin bir toplumda yerleşmesi olanaklarını sınırlandırmaktadır. Kadınların siyasi ve hukuki karar alma süreçlerine katılımı, kadınların güçlenmesinin ve toplumsal cinsiyet eşitliğinin bir ölçüsüdür. Dünyanın her yerinde kadınlar, avukatlar, hukuk danışmanları ve hukuk profesörleri olarak hukuk alanında etkileyici kazanımlar elde etmişlerdir. Bu, bir zamanlar erkeklerin egemen olduğu hukuk mesleğini en az iki şekilde değiştirmiştir: birincisi, cinsiyet bileşimi açısından ve ikincisi, kadın hareketi ve savunuculuğuyla uyumlu hukukçuların mevcudiyeti açısından. [@sonneveld2017women]
+
+
+Şimdi kadınlar, tarihsel olarak erkeklere ayrılan hâkimlik mesleğine girmektedir. Yine de birçok ülkede kadın yargıçlar aile mahkemelerinde ve alt hukuk mahkemelerinde kümelenmiş durumda ve bir tür “cam tavan” onların üst mahkemelere terfi etmelerini engellemektedir. Ancak bazı ülkelerde kadınların en yüksek mahkemelere atandıkları da görülmektedir. [@escobar2021breaking] Kadınların bu meslek gruplarındaki varlıkları, katılımları ve bakış açıları sisteme eşsiz katkılar sunmaktadır.[@shvedova2005obstacles]
+
+
+Demokratik ve demokratik olmayan ülkelerde yargı kurumlarının öne çıkması, kadınların bu güçlü ve görünür karar alma organlarında yer almasını önemli hale getirmiştir. Yine de kadınlar, anayasa mahkemeleri ve yüksek mahkemeler de dâhil olmak üzere en yüksek yargı organlarına ancak son zamanlarda girebilmişlerdir. İlk kadının bir yüksek mahkemeye atanması, kimin sahada olabileceği ve olması gerektiğine dair geleneksel fikirleri kıran tarihi bir dönüm noktasıdır.[@sherry1986gender]
+
+
+
+
+# Veri 
+
+
+```{r, echo=FALSE}
+library(readr)
+library(dplyr)
+
+```
+
+
+
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(tidyverse)
+
+```
+
+
+
+
+
+```{r, echo=FALSE}
+tidyverse_conflicts() 
+
+```
+
+
+
+
+```{r, echo=FALSE}
+data <- read.csv("C:/Users/albina/Desktop/istatistik2_final/Final/data/WOHCv1.csv")
+```
+
+
+
+
+```{r, echo=FALSE}
+summary(data)
+```
+Veri setinde yer alan değişkenler listesi:
+
+
+country- ülkenin ismi (dizi değişkeni)
+
+
+cowcode- ülkenin kodu (sayısal değişken)
+
+
+year- takvim yılı (sayısal değişken)
+
+
+courttype- mahkeme tipi (dizi değişkeni)
+
+
+courtname- mahkeme adı (dizi değişkeni)
+
+
+yearfirstwoman- mahemeye ilk kadın hakimin atandığı yıl (dizi değişkeni)
+
+
+numwomen- yüksek mahkemede kadın hakim sayısı (dizi değişkeni)
+
+
+pctwomen- yüksek mahkemede kadın hakim yüzdesi (dizi değişkeni)
+region- ülkenin dünya üzerinde bulunduğu bölge
+
+[@escobar2022reimagining]
+
+
+```{r, echo=FALSE}
+data<-data[,-2]
+data$numwomen<-as.numeric(data$numwomen)
+```
+
+Veri setinde dizi değişken olarak algılanan numberofwomen verilerini nümerik değer olarak algılaması yönünde kod yazılmıştır ve bu sütundan NA değerleri temizlenmiştir.
+
+```{r, echo=FALSE}
+head(data)
+```
+
+
+
+```{r, echo=FALSE}
+data1 <- data %>%
+   group_by(region, yearfirstwoman) %>%
+  summarize(numberofwomen = sum(numwomen, na.rm = TRUE))
+
+```
+
+
+```{r, echo=FALSE}
+library(xtable) 
+
+```
+
+
+
+
+# Yöntem ve Veri Analizi
+
+
+Bu veri analizinde oluşturulan grafiklerde; x eksenlerinde yıllar, y ekseninde ise kadın hakim sayısı yer almaktadır. Aşağıda yer alan  Grafik-1'de bölgelerdeki kadın hakim sayısının yıllara göre değişimini, Grafik-2'de ise yıllara göre bölgelerin bibrbirleri ile farklarının görülmesi planlanmaktadır. Böylelikle gelişmiş ve gelişmemiş ülkelerdeki yıllara göre değişimin ve hangi yılda hangi ülkenin öne çıktığı görülmektedir
+
+
+
+```{r, echo=FALSE}
+ggplot(data1, aes(x=yearfirstwoman, y=numberofwomen, color=region)) +
+  geom_line(linewidth=1) +
+  labs(x = "Year", y = "Number of Women Judges", title = "Graph-1 Number of Women Judges by Year") +
+  theme_minimal(base_size = 12)
+
+
+
+```
+
+
+```{r, echo=FALSE}
+supreme_court_data <- subset(data, courttype == "SUP")
+```
+
+
+
+
+```{r, echo=FALSE}
+ggplot(supreme_court_data, aes(x = yearfirstwoman, y = numwomen, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Year", y = "Number of Women", title = "Graph-2 Number of Women in Supreme Court by Year") +
+  theme_minimal()
+```
+
+
+
+```{r, echo=FALSE}
+library(dplyr)
+```
+
+
+
+
+```{r, echo=FALSE}
+grouped_data <- supreme_court_data %>%
+  group_by(yearfirstwoman, country) %>%
+  summarize(total_women = sum(numwomen))
+
+```
+
+```{r, echo=FALSE}
+ranked_data <- grouped_data %>%
+  group_by(yearfirstwoman) %>%
+  mutate(rank = rank(desc(total_women))) %>%
+  arrange(desc(total_women))
+```
+
+Aşağıdaki tabloda ise kadın hakim sayısına göre ülkelerin sıralaması elde edilmiştir. Buradan kadın hakim sayısı en fazla olan ülkeler tespit edilerek gelişmişlik düzeyleri ile kadın hakim sayısı ilişkisinin tutatrlılığı değerlendirilecektir.
+
+
+
+```{r, echo=FALSE}
+print(ranked_data)
+```
+
+```{r, echo=FALSE}
+library(ggplot2)
+```
+
+
+```{r, echo=FALSE}
+ggplot(ranked_data, aes(x = yearfirstwoman, y = total_women, fill = country)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(x = "Year", y = "Total Women", fill = "Country") +
+  ggtitle("Graph-3 Top 5 Countries in Different Years") +
+  theme_minimal() +
+  theme(legend.position = "bottom", legend.title = element_blank())
+
+```
+
+
+Grafik-3'te ayrı yıllarda, kadın hakim sayısında öne çıkan ülkelerin tespit edilmesi amaçlanmıştır. 
+
+
+
+
+# Sonuç
+
+Oluşturulan grafikler ve tablolar incelendiğinde, yıllara göre kadın hakim sayısındaki en yüksek artış Batı Avrupa ülkelerinde görülmektedir. İlk kadın hakimler geçmişte İskandinav ülkelerinde daha yüksek sayılarda görülmektedir.
+
+
+
+Yıllara göre en az değişim ve en az artış gösteren ülkelerin Güney Asya ülkeleri olduğu tespit edilmiştir.
+
+
+
+Gelişmekte olan ve gelişmiş ülkelerde, veri analizi de gösteriyor ki, kadınların gelişmemiş ülkelere göre daha erken yıllarda ve daha fazla sayıda hakimlik mesleğinde yer aldığı görülmektedir.
+
+
+\newpage
+# Kaynakça {#references}
+<div id="refs"></div>
+
